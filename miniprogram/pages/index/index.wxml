@@ -1,0 +1,54 @@
+<view class="page-container">
+
+  <!-- 顶部：柔和的语言切换栏 + 语音开关 -->
+  <view class="top-bar">
+    <!-- 左侧：语言切换 -->
+    <picker mode="selector" range="{{dialectArray}}" value="{{dialectIndex}}" bindchange="bindDialectChange">
+      <view class="lang-tag">
+        发音：<text class="lang-text">{{dialectArray[dialectIndex]}}</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+
+    <!-- 👉 右侧：换成纯文本 Emoji！彻底告别巨型图片和 2MB 限制 -->
+    <view class="voice-toggle" bindtap="toggleVoice">
+      <text class="voice-icon-emoji">{{isVoiceOn ? '🔊' : '🔇'}}</text>
+      <text class="voice-text {{isVoiceOn ? 'text-on' : 'text-off'}}">{{isVoiceOn ? '语音开' : '静音中'}}</text>
+    </view>
+  </view>
+
+  <!-- 聊天对话区 -->
+  <scroll-view class="chat-scroll" scroll-y scroll-into-view="msg-{{msgList.length - 1}}" scroll-with-animation>
+    <block wx:for="{{msgList}}" wx:key="index">
+
+      <view id="msg-{{index}}" class="msg-row {{item.role === 'user' ? 'msg-right' : 'msg-left'}}">
+        <!-- AI 头像 -->
+        <view wx:if="{{item.role === 'ai'}}" class="avatar ai-avatar">医生</view>
+
+        <!-- 聊天气泡 -->
+        <view class="msg-bubble {{item.role === 'user' ? 'bubble-user' : 'bubble-ai'}}">
+          <text class="msg-text">{{item.content}}</text>
+        </view>
+
+        <!-- 用户头像 -->
+        <view wx:if="{{item.role === 'user'}}" class="avatar user-avatar">我</view>
+      </view>
+
+    </block>
+    <!-- 底部防遮挡留白 -->
+    <view class="safe-padding"></view>
+  </scroll-view>
+
+  <!-- 底部：巨大的胶囊录音按钮 -->
+  <view class="bottom-bar">
+    <view
+      class="record-btn {{isRecording ? 'recording-active' : ''}}"
+      bindtouchstart="startRecord"
+      bindtouchend="stopRecord"
+      bindtouchcancel="stopRecord"
+    >
+      <text class="mic-icon">{{isRecording ? '🎙️' : '🎤'}}</text>
+      <text class="btn-text">{{isRecording ? '正在倾听...' : '按住说话 (' + dialectArray[dialectIndex] + ')'}}</text>
+    </view>
+  </view>
+</view>

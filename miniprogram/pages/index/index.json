@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "适老知音MVP",
+  "usingComponents": {
+    "cloud-tip-modal": "/components/cloudTipModal/index"
+  }
+}

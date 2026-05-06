@@ -1,0 +1,30 @@
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+
+# Node.js
+node_modules/
+miniprogram_npm/
+
+# Logs
+*.log
+
+# Local environment
+.env
+.env.local
+
+# WeChat developer local settings
+project.private.config.json
+
+# Cloud function local dependencies and secrets
+cloudfunctions/**/node_modules/
+cloudfunctions/**/.env
+cloudfunctions/**/.env.local

@@ -1,0 +1,12 @@
+{
+  "name": "chat-ai",
+  "version": "1.0.0",
+  "description": "适老知音核心大模型与语音链路",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "axios": "^1.6.0",
+    "ws": "^8.16.0",
+    "crypto-js": "^4.2.0"
+  }
+}

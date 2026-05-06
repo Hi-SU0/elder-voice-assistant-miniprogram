@@ -1,0 +1,201 @@
+/* 1. 整体页面底色 & 全局字体 */
+page {
+  background-color: #F7F3ED; /* 暖米浅灰，温柔护眼 */
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* 2. 顶部导航栏 (左右分布) */
+.top-bar {
+  background: linear-gradient(180deg, #EAE5DD 0%, #F7F3ED 100%);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between; /* 让方言和开关分别靠左和靠右 */
+  align-items: center;
+}
+
+.lang-tag {
+  background-color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 16px;
+  color: #666666;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.lang-text {
+  color: #2D9068;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: 4px;
+  color: #999;
+}
+
+/* 🟢 语音开关样式 (纯文本版，0KB体积) */
+.voice-toggle {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s; /* 点击动画 */
+}
+
+.voice-toggle:active {
+  transform: scale(0.92); /* 按下时会有微微缩小的按钮质感 */
+}
+
+.voice-icon-emoji {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.voice-text {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.text-on {
+  color: #2D9068; /* 开启时显示绿色字 */
+}
+
+.text-off {
+  color: #999999; /* 静音时显示灰色字 */
+}
+
+/* 3. 聊天主区域 */
+.chat-scroll {
+  flex: 1;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+/* 4. 聊天排版：左右区分 */
+.msg-row {
+  display: flex;
+  margin-bottom: 25px; /* 增加呼吸感 */
+  align-items: flex-start;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.msg-left {
+  justify-content: flex-start;
+}
+
+.msg-right {
+  justify-content: flex-end;
+}
+
+/* 5. 头像设计 (用纯色圆圈+文字模拟，颜值高且无需额外切图) */
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ai-avatar {
+  background: linear-gradient(135deg, #7AB8FF 0%, #4A90E2 100%);
+  margin-right: 12px;
+}
+
+.user-avatar {
+  background: linear-gradient(135deg, #62C29A 0%, #2D9068 100%);
+  margin-left: 12px;
+}
+
+/* 6. 气泡核心设计 (大字体、大圆角、高对比) */
+.msg-bubble {
+  max-width: 65%;
+  padding: 16px 20px;
+  border-radius: 20px; /* 大圆角 */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04); /* 增加轻微质感 */
+}
+
+/* 系统的淡蓝色气泡 */
+.bubble-ai {
+  background-color: #E6F3FF;
+  border-top-left-radius: 4px; /* 聊天气泡的小尾巴视觉 */
+}
+
+/* 用户的柔和浅绿气泡 */
+.bubble-user {
+  background-color: #D4F2E3; /* 降低了饱和度，不刺眼 */
+  border-top-right-radius: 4px;
+}
+
+/* 文字设定：适老大字号、大行高 */
+.msg-text {
+  font-size: 20px; /* 放大字号，清晰可见 */
+  color: #333333;  /* 柔和深灰 */
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+/* 7. 底部说话按钮 (沉稳墨绿、胶囊形状) */
+.bottom-bar {
+  background-color: #FFFFFF;
+  padding: 20px;
+  padding-bottom: env(safe-area-inset-bottom, 20px); /* 适配全面屏底部 */
+  box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.03);
+}
+
+.record-btn {
+  background-color: #2D9068; /* 沉稳墨绿 */
+  height: 64px;
+  border-radius: 32px; /* 胶囊形状 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(45, 144, 104, 0.3); /* 高级投影 */
+  transition: all 0.2s; /* 点击动画过渡 */
+}
+
+/* 录音按下的反馈状态 */
+.recording-active {
+  background-color: #1F6B4B; /* 按下变暗 */
+  transform: scale(0.96); /* 按下微缩反馈 */
+  box-shadow: 0 2px 8px rgba(45, 144, 104, 0.2);
+}
+
+.btn-text {
+  color: #FFFFFF;
+  font-size: 22px; /* 按钮大字号 */
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.mic-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.safe-padding {
+  height: 20px;
+}
+
+/* 简单的淡入动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
